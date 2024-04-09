@@ -1,4 +1,3 @@
-﻿//﻿
 #include <iostream>
 #include <thread>
 #include <vector>
@@ -25,12 +24,12 @@ void calculateFactorialRange(int start, int end, vector<unsigned long long>& res
 
 int main() {
     const int number = 65;
-    const int numThreads = 8;
+    const int numThreads = 6;
     vector<unsigned long long> results(number + 1);
     vector<thread> threads;
     int range = number / numThreads;
 
-    for (int numThreads = 1; numThreads <= 8; ++numThreads) {
+    for (int numThreads = 1; numThreads <= 6; ++numThreads) {
         auto start = high_resolution_clock::now();
         atomic<int> threadsRunning(0);
 
@@ -48,11 +47,11 @@ int main() {
         }
 
         auto end = high_resolution_clock::now();
-        auto duration = duration_cast<milliseconds>(end - start);
+        auto duration = duration_cast<microseconds>(end - start);
 
         cout << "Number of threads: " << numThreads << endl;
         cout << "Factorial of " << number << " is " << results[number] << endl;
-        cout << "Time taken: " << duration.count() << " milliseconds" << endl;
+        cout << "Time taken: " << duration.count() << " microseconds" << endl;
         cout << "-----------------------------" << endl;
         cout << endl;
 
